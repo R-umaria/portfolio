@@ -8,11 +8,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Download, Github, Linkedin, Mail, Phone, Menu, ExternalLink } from 'lucide-react'
 
 export default function PortfolioContent() {
-  // State for active section and mobile menu
   const [activeSection, setActiveSection] = useState('home')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  // Effect for handling scroll and updating active section
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'experience', 'projects', 'contact']
@@ -33,14 +31,12 @@ export default function PortfolioContent() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Function to toggle mobile menu
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
-  // Function to handle resume download
   const handleDownload = () => {
     const link = document.createElement('a')
-    link.href = '/Rishi\'s resume.pdf'
-    link.download = 'Rishi_Umaria_Resume.pdf'
+    link.href = "/Rishi's resume.pdf"
+    link.download = "Rishi_Umaria_Resume.pdf"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -48,15 +44,12 @@ export default function PortfolioContent() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header with navigation */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-14 items-center justify-between">
-            {/* Mobile menu button */}
             <Button variant="ghost" size="icon" className="md:hidden" onClick={toggleMenu}>
-              <Menu className="h-6 w-6" />
+              <Menu className="h-6 w-4" />
             </Button>
-            {/* Navigation links */}
             <nav className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row absolute md:relative left-0 right-0 top-14 md:top-0 bg-background md:bg-transparent p-4 md:p-0 space-y-2 md:space-y-0 md:space-x-6 md:items-center`}>
               {['Home', 'About', 'Experience', 'Projects', 'Contact'].map((item) => (
                 <Link
@@ -70,13 +63,11 @@ export default function PortfolioContent() {
                   {item}
                 </Link>
               ))}
-              {/* Mobile download button */}
               <Button variant="outline" size="sm" onClick={handleDownload} className="md:hidden">
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </Button>
             </nav>
-            {/* Desktop download button */}
             <div className="flex items-center">
               <Button variant="outline" size="sm" onClick={handleDownload} className="hidden md:flex">
                 <Download className="mr-2 h-4 w-4" />
@@ -88,13 +79,11 @@ export default function PortfolioContent() {
       </header>
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Home section */}
         <section id="home" className="py-12 md:py-20">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
               <h1 className="text-3xl md:text-4xl font-bold mb-4">Rishi Umaria</h1>
               <p className="text-lg md:text-xl mb-6">Aspiring Software Developer</p>
-              {/* Social links */}
               <div className="flex justify-center md:justify-start space-x-4">
                 <Link href="https://linkedin.com/in/rishi-umaria-026119288/" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="icon">
@@ -113,10 +102,9 @@ export default function PortfolioContent() {
                 </Link>
               </div>
             </div>
-            {/* Profile image */}
             <div className="md:w-1/2 flex justify-center">
               <Image
-                src="/Me.jpg"
+                src="/ME.jpg"
                 alt="Rishi Umaria"
                 width={400}
                 height={400}
@@ -126,10 +114,8 @@ export default function PortfolioContent() {
           </div>
         </section>
 
-        {/* About section */}
         <section id="about" className="py-12 md:py-20">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">About Me</h2>
-          {/* Education card */}
           <Card>
             <CardHeader>
               <CardTitle className="text-xl md:text-2xl">Education</CardTitle>
@@ -140,7 +126,7 @@ export default function PortfolioContent() {
               <p>GPA: 3.5</p>
               <p className="mt-4">Relevant Coursework:</p>
               <ul className="list-disc list-inside text-sm md:text-base">
-                <li>Data Structures & Algorithms</li>
+                <li>Data Structures &amp; Algorithms</li>
                 <li>Operating System</li>
                 <li>Database Management</li>
                 <li>Object Oriented Programming</li>
@@ -148,7 +134,6 @@ export default function PortfolioContent() {
               </ul>
             </CardContent>
           </Card>
-          {/* Skills card */}
           <Card className="mt-6 md:mt-8">
             <CardHeader>
               <CardTitle className="text-xl md:text-2xl">Skills</CardTitle>
@@ -161,7 +146,6 @@ export default function PortfolioContent() {
           </Card>
         </section>
 
-        {/* Experience section */}
         <section id="experience" className="py-12 md:py-20">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Professional Experience</h2>
           <Card>
@@ -181,11 +165,9 @@ export default function PortfolioContent() {
           </Card>
         </section>
 
-        {/* Projects section */}
         <section id="projects" className="py-12 md:py-20">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Notable Projects</h2>
           <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* TutorRacoon project card */}
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg md:text-xl">TutorRacoon</CardTitle>
@@ -202,22 +184,18 @@ export default function PortfolioContent() {
                 </Link>
               </CardContent>
             </Card>
-            {/* Self-Driving Car project card */}
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg md:text-xl">Self-Driving Car</CardTitle>
-                <CardDescription>Personal Project</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
                   <li>Developed a self-driving car simulation using Python, leveraging machine learning and AI algorithms.</li>
                   <li>Implemented simulated sensors for lane detection and obstacle avoidance.</li>
-                  <li>Trained the model using deep learning frameworks to enhance the car's ability to learn from its environment.</li>
+                  <li>Trained the model using deep learning frameworks to enhance the car&apos;s ability to learn from its environment.</li>
                 </ul>
-                {/* Add project link when available */}
               </CardContent>
             </Card>
-            {/* LectureLife project card */}
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg md:text-xl">LectureLife</CardTitle>
@@ -225,34 +203,16 @@ export default function PortfolioContent() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
-                  <li>Led a team to develop a self-scheduling app integrated with Google Maps and GRT's API.</li>
+                  <li>Led a team to develop a self-scheduling app integrated with Google Maps and GRT&apos;s API.</li>
                   <li>Helped students manage schedules and navigate local transit effectively.</li>
                   <li>Gained experience in API integration and team collaboration.</li>
                   <li>Enhanced coding skills in React, NodeJS and Flask.</li>
                 </ul>
-                {/* Add project link when available */}
-              </CardContent>
-            </Card>
-            {/* Example Card */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg md:text-xl">Float n' Pose</CardTitle>
-                <CardDescription>Nasa Space App Challenge Hacakathon</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
-                  <li>Developed a python game for astronauts in space.</li>
-                  <li>Used various python libraries like OpenCV, NumPy,etc.</li>
-                  <li>Used Google API, MinePipe, for pose estimation and Pose Landmark detection.</li>
-                  <li>Developed app's UI using StreamLit framework for quick developement.</li>
-                </ul>
-                {/* Add project link when available */}
               </CardContent>
             </Card>
           </div>
         </section>
 
-        {/* Contact section */}
         <section id="contact" className="py-12 md:py-20">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Contact Me</h2>
           <Card>
@@ -277,7 +237,6 @@ export default function PortfolioContent() {
         </section>
       </main>
 
-      {/* Footer */}
       <footer className="border-t py-6 md:py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
