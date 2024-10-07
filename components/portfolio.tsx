@@ -176,7 +176,7 @@ export default function Portfolio() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside space-y-2">
-                  <li>Led a team to develop a self-scheduling app integrated with Google Maps and GRT`'` API.</li>
+                  <li>Led a team to develop a self-scheduling app integrated with Google Maps and GRT`&apos` API.</li>
                   <li>Helped students manage schedules and navigate local transit effectively.</li>
                   <li>Gained experience in API integration and team collaboration.</li>
                   <li>Enhanced coding skills in React, NodeJS and Flask.</li>
