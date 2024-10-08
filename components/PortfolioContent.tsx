@@ -79,12 +79,12 @@ export default function PortfolioContent() {
       </header>
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <section id="home" className="py-12 md:py-20">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
+        <section id="home" className="py-12 md:py-20  bg-slate-50">
+          <div className="flex flex-col md:flex-row items-center justify-evenly">
+            <div className="md:w-1/2 mb-8 md:mb-0 text-center md:text-center ">
               <h1 className="text-3xl md:text-4xl font-bold mb-4">Rishi Umaria</h1>
               <p className="text-lg md:text-xl mb-6">Aspiring Software Developer</p>
-              <div className="flex justify-center md:justify-start space-x-4">
+              <div className="flex justify-center md:justify-center space-x-4">
                 <Link href="https://linkedin.com/in/rishi-umaria-026119288/" target="_blank" rel="noopener noreferrer">
                   <Button variant="outline" size="icon">
                     <Linkedin className="h-4 w-4" />
@@ -194,6 +194,9 @@ export default function PortfolioContent() {
                   <li>Implemented simulated sensors for lane detection and obstacle avoidance.</li>
                   <li>Trained the model using deep learning frameworks to enhance the car&apos;s ability to learn from its environment.</li>
                 </ul>
+                <Link href="https://github.com/r-umaria/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-4 text-primary hover:underline">
+                  View Project <ExternalLink className="ml-1 h-4 w-4" />
+                </Link>
               </CardContent>
             </Card>
             <Card>
@@ -208,6 +211,26 @@ export default function PortfolioContent() {
                   <li>Gained experience in API integration and team collaboration.</li>
                   <li>Enhanced coding skills in React, NodeJS and Flask.</li>
                 </ul>
+                <Link href="https://devpost.com/software/lecture-life" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-4 text-primary hover:underline">
+                  View Project <ExternalLink className="ml-1 h-4 w-4" />
+                </Link>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg md:text-xl">Float n&apos; Pose</CardTitle>
+                <CardDescription>NASA Space Apps Challenge Hackathon</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
+                  <li>Developed a game for astronauts in space.</li>
+                  <li>Used various libraries such as OpenCv and NumPy.</li>
+                  <li>Used Python&apos;s StreamLit framework for quick development.</li>
+                  <li>Implemented Google API, MinePipe, for detecting pose landmarks and used cosine-similarity for scoring the player.</li>
+                </ul>
+                <Link href="https://github.com/SaarthRajan/float-n-pose.git" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-4 text-primary hover:underline">
+                  View Project <ExternalLink className="ml-1 h-4 w-4" />
+                </Link>
               </CardContent>
             </Card>
           </div>
