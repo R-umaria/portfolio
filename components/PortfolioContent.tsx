@@ -123,7 +123,6 @@ export default function PortfolioContent() {
             </CardHeader>
             <CardContent>
               <p>Conestoga College, Waterloo, ON</p>
-              <p>GPA: 3.5</p>
               <p className="mt-4">Relevant Coursework:</p>
               <ul className="list-disc list-inside text-sm md:text-base">
                 <li>Data Structures &amp; Algorithms</li>
@@ -187,6 +186,7 @@ export default function PortfolioContent() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg md:text-xl">Self-Driving Car</CardTitle>
+                <CardDescription>Personal Project</CardDescription>
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
