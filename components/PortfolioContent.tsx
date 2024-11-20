@@ -3,13 +3,16 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Download, Github, Linkedin, Mail, Phone, Menu, ExternalLink } from 'lucide-react'
+import { Download, Github, Linkedin, Mail, Phone, Menu, ExternalLink, Moon, Sun } from 'lucide-react'
 
 export default function PortfolioContent() {
   const [activeSection, setActiveSection] = useState('home')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +31,7 @@ export default function PortfolioContent() {
     }
 
     window.addEventListener('scroll', handleScroll)
+    setMounted(true)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -41,6 +45,12 @@ export default function PortfolioContent() {
     link.click()
     document.body.removeChild(link)
   }
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
+  if (!mounted) return null
 
   return (
     <div className="min-h-screen bg-background">
@@ -68,10 +78,13 @@ export default function PortfolioContent() {
                 Download Resume
               </Button>
             </nav>
-            <div className="flex items-center">
+            <div className="flex items-center space-x-2">
               <Button variant="outline" size="sm" onClick={handleDownload} className="hidden md:flex">
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
+              </Button>
+              <Button variant="ghost" size="icon" onClick={toggleTheme}>
+                {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
               </Button>
             </div>
           </div>
@@ -79,7 +92,7 @@ export default function PortfolioContent() {
       </header>
 
       <main className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <section id="home" className="py-12 md:py-20 bg-slate-50">
+        <section id="home" className="py-12 md:py-20 bg-slate-50 dark:bg-slate-900">
           <div className="flex flex-col md:flex-row items-center justify-evenly">
             <div className="md:w-1/2 mb-8 md:mb-0 text-center md:text-center ">
               <h1 className="text-3xl md:text-4xl font-bold mb-4">Rishi Umaria</h1>
@@ -201,8 +214,8 @@ export default function PortfolioContent() {
 
         <section id="projects" className="py-12 md:py-20">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center md:text-left">Notable Projects</h2>
-          <div className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
+          <div className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            <Card className="flex flex-col h-full">
               <Image
                 src="/project-images/float-n-Pose.png"
                 alt="Float n' Pose Project"
@@ -214,19 +227,21 @@ export default function PortfolioContent() {
                 <CardTitle className="text-lg md:text-xl">Float n&apos; Pose</CardTitle>
                 <CardDescription>NASA Space Apps Challenge Hackathon</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
                   <li>Developed a game for astronauts in space.</li>
                   <li>Used various libraries such as OpenCv and NumPy.</li>
                   <li>Used Python&apos;s StreamLit framework for quick development.</li>
                   <li>Implemented Google API, MinePipe, for detecting pose landmarks and used cosine-similarity for scoring the player.</li>
                 </ul>
-                <Link href="https://github.com/SaarthRajan/float-n-pose.git" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-4 text-primary hover:underline">
-                  View Project <ExternalLink className="ml-1 h-4 w-4" />
-                </Link>
+                <div className="mt-auto pt-4">
+                  <Link href="https://github.com/SaarthRajan/float-n-pose.git" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:underline">
+                    View Project <ExternalLink className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="flex flex-col h-full">
               <Image
                 src="/project-images/spotSpot.png"
                 alt="spotSpot Project"
@@ -238,19 +253,21 @@ export default function PortfolioContent() {
                 <CardTitle className="text-lg md:text-xl">spotSpot</CardTitle>
                 <CardDescription>Ctrl + Del + Hacks</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
                   <li>Developed an acne detection classifier using PyTorch and ShuffleNet CNN to analyze facial images and identify acne types.</li>
                   <li>Enhanced model accuracy with data augmentation, class balancing, and fine-tuning to prevent overfitting on a small dataset.</li>
                   <li>Built a Streamlit-based interface supporting live photo capture and image uploads for real-time analysis.</li>
                   <li>Focused on telemedicine by providing OTC treatment recommendations to improve healthcare accessibility.</li>
                 </ul>
-                <Link href="https://github.com/R-umaria/spotSpot" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-4 text-primary hover:underline">
-                  View Project <ExternalLink className="ml-1 h-4 w-4" />
-                </Link>
+                <div className="mt-auto pt-4">
+                  <Link href="https://github.com/R-umaria/spotSpot" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:underline">
+                    View Project <ExternalLink className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="flex flex-col h-full">
               <Image
                 src="/project-images/tutorRacoon.jpeg"
                 alt="TutorRacoon Project"
@@ -262,18 +279,20 @@ export default function PortfolioContent() {
                 <CardTitle className="text-lg md:text-xl">TutorRacoon</CardTitle>
                 <CardDescription>IgnitionHacks Hackathon</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
                   <li>Developed an online tutoring platform connecting students with subject-matter experts.</li>
                   <li>Integrated features such as session scheduling, real-time chat, and feedback systems.</li>
                   <li>Used JavaScript, Node.js, and Firebase, focusing on scalability and user engagement.</li>
                 </ul>
-                <Link href="https://devpost.com/software/tutorraccoon" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-4 text-primary hover:underline">
-                  View Project <ExternalLink className="ml-1 h-4 w-4" />
-                </Link>
+                <div className="mt-auto pt-4">
+                  <Link href="https://devpost.com/software/tutorraccoon" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:underline">
+                    View Project <ExternalLink className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="flex flex-col h-full">
               <Image
                 src="/project-images/self-driving-car-sim.jpg"
                 alt="Self-Driving Car Project"
@@ -285,18 +304,20 @@ export default function PortfolioContent() {
                 <CardTitle className="text-lg md:text-xl">Self-Driving Car</CardTitle>
                 <CardDescription>Personal Project</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
                   <li>Developed a self-driving car simulation using Python, leveraging machine learning and AI algorithms.</li>
                   <li>Implemented simulated sensors for lane detection and obstacle avoidance.</li>
                   <li>Trained the model using deep learning frameworks to enhance the car&apos;s ability to learn from its environment.</li>
                 </ul>
-                <Link href="https://github.com/r-umaria/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-4 text-primary hover:underline">
-                  View Project <ExternalLink className="ml-1 h-4 w-4" />
-                </Link>
+                <div className="mt-auto pt-4">
+                  <Link href="https://github.com/r-umaria/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:underline">
+                    View Project <ExternalLink className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="flex flex-col h-full">
               <Image
                 src="/project-images/LectureLife.png"
                 alt="LectureLife Project"
@@ -308,16 +329,18 @@ export default function PortfolioContent() {
                 <CardTitle className="text-lg md:text-xl">LectureLife</CardTitle>
                 <CardDescription>ConHacks Hackathon</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="flex-grow">
                 <ul className="list-disc list-inside space-y-2 text-sm md:text-base">
                   <li>Led a team to develop a self-scheduling app integrated with Google Maps and GRT&apos;s API.</li>
                   <li>Helped students manage schedules and navigate local transit effectively.</li>
                   <li>Gained experience in API integration and team collaboration.</li>
                   <li>Enhanced coding skills in React, NodeJS and Flask.</li>
                 </ul>
-                <Link href="https://devpost.com/software/lecture-life" target="_blank" rel="noopener noreferrer" className="inline-flex items-center mt-4 text-primary hover:underline">
-                  View Project <ExternalLink className="ml-1 h-4 w-4" />
-                </Link>
+                <div className="mt-auto pt-4">
+                  <Link href="https://devpost.com/software/lecture-life" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-primary hover:underline">
+                    View Project <ExternalLink className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
               </CardContent>
             </Card>
           </div>
